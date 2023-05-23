@@ -6,6 +6,7 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.6.7</version>
+<!-- 		<version>3.0.6</version> -->
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>gaia.dpcg</groupId>
@@ -15,6 +16,7 @@
 	<description>Demoing the spring issues when using tornado module path</description>
 	<properties>
 		<java.version>17</java.version>
+		<tornado.path>/home/greg/TornadoVM</tornado.path>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -48,7 +50,7 @@
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
-                            <argLine> -XX:-UseCompressedOops -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCI -Djava.library.path=/home/greg/TornadoVM/bin/sdk/lib  --module-path .:/home/greg/TornadoVM/bin/sdk/share/java/tornado -Dtornado.load.api.implementation=uk.ac.manchester.tornado.runtime.tasks.TornadoTaskGraph -Dtornado.load.runtime.implementation=uk.ac.manchester.tornado.runtime.TornadoCoreRuntime -Dtornado.load.tornado.implementation=uk.ac.manchester.tornado.runtime.common.Tornado -Dtornado.load.device.implementation.opencl=uk.ac.manchester.tornado.drivers.opencl.runtime.OCLDeviceFactory -Dtornado.load.device.implementation.ptx=uk.ac.manchester.tornado.drivers.ptx.runtime.PTXDeviceFactory -Dtornado.load.device.implementation.spirv=uk.ac.manchester.tornado.drivers.spirv.runtime.SPIRVDeviceFactory -Dtornado.load.annotation.implementation=uk.ac.manchester.tornado.annotation.ASMClassVisitor -Dtornado.load.annotation.parallel=uk.ac.manchester.tornado.api.annotations.Parallel  --upgrade-module-path /home/greg/TornadoVM/bin/sdk/share/java/graalJars -XX:+UseParallelGC  @/home/greg/TornadoVM/bin/sdk/etc/exportLists/common-exports @/home/greg/TornadoVM/bin/sdk/etc/exportLists/opencl-exports --add-modules ALL-SYSTEM,tornado.runtime,tornado.annotation,tornado.drivers.common,tornado.drivers.opencl</argLine>
+                            <argLine> -XX:-UseCompressedOops -XX:+UnlockExperimentalVMOptions -XX:+EnableJVMCI -Djava.library.path=${tornado.path}/bin/sdk/lib  --module-path .:${tornado.path}/bin/sdk/share/java/tornado -Dtornado.load.api.implementation=uk.ac.manchester.tornado.runtime.tasks.TornadoTaskGraph -Dtornado.load.runtime.implementation=uk.ac.manchester.tornado.runtime.TornadoCoreRuntime -Dtornado.load.tornado.implementation=uk.ac.manchester.tornado.runtime.common.Tornado -Dtornado.load.device.implementation.opencl=uk.ac.manchester.tornado.drivers.opencl.runtime.OCLDeviceFactory -Dtornado.load.device.implementation.ptx=uk.ac.manchester.tornado.drivers.ptx.runtime.PTXDeviceFactory -Dtornado.load.device.implementation.spirv=uk.ac.manchester.tornado.drivers.spirv.runtime.SPIRVDeviceFactory -Dtornado.load.annotation.implementation=uk.ac.manchester.tornado.annotation.ASMClassVisitor -Dtornado.load.annotation.parallel=uk.ac.manchester.tornado.api.annotations.Parallel  --upgrade-module-path ${tornado.path}/bin/sdk/share/java/graalJars -XX:+UseParallelGC  @${tornado.path}/bin/sdk/etc/exportLists/common-exports @${tornado.path}/bin/sdk/etc/exportLists/opencl-exports --add-modules ALL-SYSTEM,tornado.runtime,tornado.annotation,tornado.drivers.common,tornado.drivers.opencl</argLine>
                         </configuration>
                     </plugin>
                 </plugins>
